@@ -1,0 +1,47 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'com.github.johnrengelman.shadow'
+    
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://jitpack.io/' }
+    }
+    
+    compileJava {
+        targetCompatibility = sourceCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    dependencies {
+        shadow 'fr.flowarg:flowmultitools:1.2.4'
+    }
+    
+    shadowJar {
+        classifier 'shaded'
+        configurations = [project.configurations.shadow]
+    }
+    
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(8)
+        }
+    }
+}
+
+dependencies {
+    shadow 'fr.flowarg:flowupdater:1.3.4'
+    shadow 'fr.flowarg:openlauncherlib:3.1.5'
+    shadow 'com.googlecode.json-simple:json-simple:1.1.1'
+    shadow 'de.jensd:fontawesomefx:8.9'
+    shadow 'com.jfoenix:jfoenix:8.0.9'
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': 'fr.flowarg.viplauncher.Main')
+    }
+}

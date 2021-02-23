@@ -1,0 +1,24 @@
+package fr.flowarg.viplauncher.auth.mojang;
+
+import java.io.Serializable;
+import java.util.UUID;
+
+public class Profile implements Serializable
+{
+    private final String id;
+    private final String name;
+    private final boolean legacy;
+
+    public Profile(String id, String name, boolean legacy)
+    {
+        this.id = id;
+        this.name = name;
+        this.legacy = legacy;
+    }
+
+    public UUID getUUID() {return UUID.fromString(id.replaceAll("(\\w{8})(\\w{4})(\\w{4})(\\w{4})(\\w{12})", "$1-$2-$3-$4-$5"));}
+
+    public String getName() {return name;}
+
+    public boolean isLegacy() {return legacy;}
+}

@@ -1,0 +1,7 @@
+apply plugin: 'java-library'
+
+jar {
+    manifest {
+        attributes('Main-Class': 'fr.flowarg.vipbootstrap.Main', 'SplashScreen-Image': 'vip.png')
+    }
+}
